@@ -1,0 +1,11 @@
+# Axiom footprint of collatz_guess/Guess.lean
+# Lean 4.32.2 (commit f3b06c70) · Mathlib @ 905b95818eb32af7874a58b427f50c1711a5e96c (2026-07-28)
+# Command: ./build.sh    (the #print axioms lines are at the end of Guess.lean)
+# Regenerate after any change; the three lines below are the full output.
+
+'Guess.cost_isLeast' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Guess.cost_isGreatest' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Guess.cost_avg' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+# No sorryAx, no native_decide, no extra trusted constants.
+# propext / Classical.choice / Quot.sound are Lean's standard three.

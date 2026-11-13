@@ -1,0 +1,14 @@
+name = "collatz_guess"
+defaultTargets = ["Guess"]
+
+# Mathlib is pinned by commit so the artifact is reproducible on a networked
+# machine:   lake exe cache get && lake build
+# Offline builds go through ./build.sh, which reads this rev and refuses to
+# compile if the borrowed Mathlib clone has drifted from it.
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "905b95818eb32af7874a58b427f50c1711a5e96c"
+
+[[lean_lib]]
+name = "Guess"
