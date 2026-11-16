@@ -144,8 +144,32 @@ download and fail with an SSL error; `elan show` reports an invalid toolchain
 'Collatz.guard_iff'          [propext, Classical.choice, Quot.sound]
 ```
 
+
 Within the project target (`propext / Classical.choice / Quot.sound`); zero
 `sorry`, no `native_decide`, no extra trusted constants.
+
+## Definition audit (`DefCheck.lean`)
+
+The axiom audit says "no unexplained trust"; `DefCheck.lean` says "and the objects
+are the paper's objects". Each definition is tested against an independent
+characterisation that does not reuse it:
+
+```
+lake build                    # Collatz.olean must exist first
+lake env lean DefCheck.lean   # expected: five lines, each `true`
+```
+
+| Check | Independent characterisation |
+|---|---|
+| `T`, `Tit` | the paper's values at `x = 27`, and `Tit` as iterated `T` |
+| `C` | `c` odd and `3x+1 = 2^k * c` for some `k` (3000 inputs) |
+| `Arr` | brute-force `min { j | T^j x = z }` (300 starts × 3 cycle points) |
+| `distEq` | `Int.natAbs (a - b) = m` (50³ triples) |
+| `S` | the three sums have pairwise distinct residues mod 3 |
+
+These are finite-domain checks, **not proofs**. Where a proof exists it is named in
+the file itself (`Arr_is_min`, `strip2_unique`, `S_pairwise`).
+
 
 ## A note on `lem:mod3` — what changed and what did not
 
