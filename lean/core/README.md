@@ -57,6 +57,16 @@ Non-vacuity is not assumed: the `example` at the end of the file instantiates
 all hypotheses at `a'=1, b'=2, m=1, n=5` and discharges them, so the theorem
 is known to be non-empty.
 
+## Two deliberate strengthenings
+
+- **Domain.** `T` is total on `Nat` (`T 0 = 0`) and `C` is defined on all of `Nat`,
+  whereas the paper needs positive inputs (and odd ones for `C`). Every theorem
+  holds on the extended domain, so this is a strengthening, not a deviation.
+- **`Arr` is parametric in the meeting time.** `cyclekill_correct` accepts any
+  entry times `ta`, `tb` satisfying `Tit ta a = za`; the paper's algorithm uses
+  *first* arrival. `Arr_is_min` shows that at first arrival `Arr` coincides with
+  `τ`, so the algorithm is the special case.
+
 ## A note on `prop:compressed`
 
 `strip2_pow_two_dvd` supplies the characterization the other lemmas were missing:
