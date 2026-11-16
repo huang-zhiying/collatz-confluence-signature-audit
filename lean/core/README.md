@@ -69,11 +69,11 @@ is known to be non-empty.
 
 ## A note on `prop:compressed`
 
-`strip2_pow_two_dvd` supplies the characterization the other lemmas were missing:
-`n = 2^k * strip2 n` for some `k`. Together with `strip2_odd` (the result is odd)
-and `strip2_dvd` (it divides `n`), this identifies `strip2 n` as the odd part of
-`n`, i.e. as `n / 2 ^ v2 n` — so `C` is provably the paper's `C`, not merely
-numerically equal to it on test inputs.
+`strip2_pow_two_dvd` supplies the existence half — `n = 2^k * strip2 n` for some
+`k` — and `strip2_unique` supplies the uniqueness half: any representation
+`n = 2^k * c` with `c` odd has `c = strip2 n`. With `strip2_odd` (the result is
+odd) this identifies `strip2 n` as the odd part of `n`, i.e. as `n / 2 ^ v2 n`, so
+`C` is provably the paper's `C` and not merely numerically equal on test inputs.
 
 
 
@@ -119,7 +119,7 @@ download and fail with an SSL error; `elan show` reports an invalid toolchain
 
 ## Axiom audit
 
-19 `#print axioms` lines; 15 below budget, 4 needing `Classical.choice`.
+20 `#print axioms` lines; 16 below budget, 4 needing `Classical.choice`.
 
 ```
 'Collatz.ladder'             [propext, Quot.sound]
@@ -135,6 +135,7 @@ download and fail with an SSL error; `elan show` reports an invalid toolchain
 'Collatz.compressed_zero'    [propext, Quot.sound]
 'Collatz.compressed_not_unique' [propext, Quot.sound]
 'Collatz.strip2_pow_two_dvd'   [propext, Quot.sound]
+'Collatz.strip2_unique'        [propext, Quot.sound]
 'Collatz.cyclekill_core'     [propext, Quot.sound]
 'Collatz.Wcyc_mono_mul'      [propext, Quot.sound]
 'Collatz.Arr_covers'         [propext, Classical.choice, Quot.sound]

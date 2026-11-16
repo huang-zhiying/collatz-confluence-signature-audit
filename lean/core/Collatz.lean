@@ -226,6 +226,14 @@ theorem strip2_pow_two_mul (y k : Nat) (hy : y % 2 = 1) : strip2 (2 ^ k * y) = y
         _ = 2 * (2 ^ k * y) := Nat.mul_assoc 2 (2 ^ k) y
     rw [h2, strip2_two_mul _ hpos, ih]
 
+/-- Uniqueness: any representation `n = 2^k * c` with `c` odd has `c = strip2 n`.
+Together with `strip2_pow_two_dvd` (such a representation exists) this pins `strip2`
+down as the odd part of `n`. -/
+theorem strip2_unique (n c k : Nat) (hc : c % 2 = 1) (h : n = 2 ^ k * c) :
+    strip2 n = c := by
+  rw [h]
+  exact strip2_pow_two_mul c k hc
+
 /-- `strip2` removes exactly the factors of two: `n = 2^k * strip2 n` for some `k`.
 With `strip2_odd` (the result is odd) and `strip2_dvd` (it divides `n`) this
 characterizes `strip2 n` as the odd part of `n` — i.e. as `n / 2 ^ v2 n` — without
@@ -715,6 +723,7 @@ strictly less: no axioms at all. -/
 #print axioms Collatz.compressed_zero
 #print axioms Collatz.compressed_not_unique
 #print axioms Collatz.strip2_pow_two_dvd
+#print axioms Collatz.strip2_unique
 #print axioms Collatz.Wcyc_mono_mul
 
 /-! ## NOTES — scope
