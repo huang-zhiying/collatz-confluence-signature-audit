@@ -16,7 +16,7 @@ cd core
 lake build          # 或：lean Collatz.lean
 ```
 
-预期：0 error、0 warning；18 行 `#print axioms`，每条的公理集为
+预期：0 error、0 warning；19 行 `#print axioms`，每条的公理集为
 `[propext, Quot.sound]` 或 `[propext, Classical.choice, Quot.sound]`。
 
 `guess/` 需要联网获取 Mathlib（版本已钉）：

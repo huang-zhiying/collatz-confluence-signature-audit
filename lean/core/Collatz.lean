@@ -226,6 +226,26 @@ theorem strip2_pow_two_mul (y k : Nat) (hy : y % 2 = 1) : strip2 (2 ^ k * y) = y
         _ = 2 * (2 ^ k * y) := Nat.mul_assoc 2 (2 ^ k) y
     rw [h2, strip2_two_mul _ hpos, ih]
 
+/-- `strip2` removes exactly the factors of two: `n = 2^k * strip2 n` for some `k`.
+With `strip2_odd` (the result is odd) and `strip2_dvd` (it divides `n`) this
+characterizes `strip2 n` as the odd part of `n` — i.e. as `n / 2 ^ v2 n` — without
+introducing `v2` into the development. -/
+theorem strip2_pow_two_dvd : ∀ n, ∃ k, n = 2 ^ k * strip2 n := by
+  intro n
+  induction n using strip2.induct with
+  | case1 => exact ⟨0, by simp [strip2.eq_1]⟩
+  | case2 k hk ih =>
+      obtain ⟨j, hj⟩ := ih
+      refine ⟨j + 1, ?_⟩
+      rw [strip2.eq_2, if_pos hk]
+      calc k + 1 = 2 * ((k + 1) / 2) := by omega
+        _ = 2 * (2 ^ j * strip2 ((k + 1) / 2)) := congrArg (fun t => 2 * t) hj
+        _ = (2 ^ j * 2) * strip2 ((k + 1) / 2) := by rw [Nat.mul_left_comm, Nat.mul_assoc]
+        _ = 2 ^ (j + 1) * strip2 ((k + 1) / 2) := by rw [Nat.pow_succ]
+  | case3 k hk =>
+      refine ⟨0, ?_⟩
+      rw [strip2.eq_2, if_neg hk, Nat.pow_zero, Nat.one_mul]
+
 /-- `prop:compressed`, case `y ≡ 1 (mod 3)`: `(4y-1)/3` is a preimage of `y`. -/
 theorem compressed_one (y : Nat) (hy : y % 2 = 1) (h3 : y % 3 = 1) :
     C ((4 * y - 1) / 3) = y := by
@@ -694,6 +714,7 @@ strictly less: no axioms at all. -/
 #print axioms Collatz.compressed_two
 #print axioms Collatz.compressed_zero
 #print axioms Collatz.compressed_not_unique
+#print axioms Collatz.strip2_pow_two_dvd
 #print axioms Collatz.Wcyc_mono_mul
 
 /-! ## NOTES — scope

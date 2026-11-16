@@ -44,7 +44,12 @@ version, and `cost_isLeast` / `cost_isGreatest` are exactly its two halves.
   is an infinite series (`tsum`), and the paper never uses the derivation — only the
   resulting identities. Layer 3 of the project plan; deliberately skipped.
 - **`2^{H_inf}` as a logarithm.** `H_inf = -log2 (max p)` needs `Real.log`; the Lean
-  statements stay on the algebraic side (`1/p_max`), which is what the audit uses.
+  statements stay on the algebraic side. Concretely the proofs stop one step before
+  the paper's equality: they give `IsLeast (range (1/p)) (1/p i₀)` and
+  `IsGreatest (range (1/p)) (1/p i₁)`, but the identification `2^{H_inf} = 1/max p`
+  is not written in Lean.
+- **`E[N(x)] = 1/p(x)` is a premise, not a result.** The geometric derivation is out
+  of scope; each theorem's docstring says so.
 
 ## Build
 

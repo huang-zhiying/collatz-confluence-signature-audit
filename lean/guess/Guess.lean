@@ -21,7 +21,9 @@
 
   Scope: only the algebra of `1/p` is formalized.  That `N(x)` is geometric with
   mean `1/p(x)` (an infinite series) is NOT formalized: the paper only ever uses
-  the resulting identities, never the derivation of the expectation.
+  the resulting identities, never the derivation of the expectation.  Likewise the
+  last step to `2 ^ H_inf` is not here — `H_inf = -log2 (max p)` needs `Real.log`,
+  so the statements stop at `1 / max p` and `1 / min p`.
 -/
 import Mathlib.Algebra.BigOperators.Field
 import Mathlib.Algebra.Order.Field.Basic
@@ -35,7 +37,8 @@ variable {n : ℕ} (p : Fin n → ℚ)
 
 /-- The mode minimizes the cost: `1/max p` is the least value of `1/p`,
     i.e. `2^{H_inf}(D)` is the expected cost of the most probable instance
-    and a lower bound for all others. -/
+    and a lower bound for all others.  The premise `E[N(x)] = 1/p(x)` is taken as
+    given; the geometric derivation is out of scope (see the file header). -/
 theorem cost_isLeast (hp : ∀ i, 0 < p i) (i₀ : Fin n) (hmax : ∀ i, p i ≤ p i₀) :
     IsLeast (Set.range fun i => 1 / p i) (1 / p i₀) := by
   constructor
@@ -44,7 +47,8 @@ theorem cost_isLeast (hp : ∀ i, 0 < p i) (i₀ : Fin n) (hmax : ∀ i, p i ≤
     exact one_div_le_one_div_of_le (hp i) (hmax i)
 
 /-- The least probable instance is the most expensive one: `1/min p` is the
-    greatest value of `1/p`. -/
+    greatest value of `1/p`.  Same premise: `E[N(x)] = 1/p(x)` is given, not
+    derived (see the file header). -/
 theorem cost_isGreatest (hp : ∀ i, 0 < p i) (i₁ : Fin n) (hmin : ∀ i, p i₁ ≤ p i) :
     IsGreatest (Set.range fun i => 1 / p i) (1 / p i₁) := by
   constructor
@@ -53,7 +57,8 @@ theorem cost_isGreatest (hp : ∀ i, 0 < p i) (i₁ : Fin n) (hmin : ∀ i, p i�
     exact one_div_le_one_div_of_le (hp i₁) (hmin i)
 
 /-- The average cost over instances drawn from `D` is the support size `U = n`.
-    (Every point of `Fin n` is in the support, since `p` is strictly positive.) -/
+    (Every point of `Fin n` is in the support, since `p` is strictly positive.)
+    This is the average of `1 / p` against `p`, with `E[N(x)] = 1/p(x)` given. -/
 theorem cost_avg (hp : ∀ i, 0 < p i) (_h1 : ∑ i, p i = 1) : ∑ i, p i * (1 / p i) = n := by
   have h : ∀ i, p i * (1 / p i) = 1 := fun i => mul_one_div_cancel (ne_of_gt (hp i))
   calc ∑ i, p i * (1 / p i) = ∑ _i : Fin n, (1 : ℚ) := sum_congr rfl fun i _ => h i
