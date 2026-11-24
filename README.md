@@ -33,6 +33,10 @@ paper/                  熵估计与图表（8 个脚本 + 数据；论文正文
 normalize_outputs.py    数值校验和工具（剥离计时字段、统一行尾；见下节）
 ```
 
+## 如何逐条核验
+
+每个数值断言对应的脚本、输出文件与预期值见 [`REPRODUCE.md`](REPRODUCE.md)。
+
 ## 环境与运行
 
 - Python ≥ 3.10；除 `paper/figures/make_figures.py`（需要 matplotlib）外，**全部脚本仅用标准库**，Windows/Linux 通用。`make_figures.py` 另需中文字体（默认 `SimHei`；Linux 下需替换为可用字体，否则图内中文会回退）。
