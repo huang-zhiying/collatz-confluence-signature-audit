@@ -80,6 +80,8 @@ normalised one.
   output satisfies the verification predicate) is proved and machine-checked; that it
   returns for every $k$ within a bounded number of draws rests on measurement.
 
+**Historical snapshots.** The authors' working repository keeps about ninety `tex/manuscript_v*_review.tex` snapshots. They predate the five-point protocol (added with `k=512`) and are kept only as version history; the numbers in this package and in the manuscript are those of `attacks/round12_out.txt`.
+
 ## 6. Not included
 
 - Manuscript sources and PDFs (author's copy).
