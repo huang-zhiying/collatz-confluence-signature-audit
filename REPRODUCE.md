@@ -41,6 +41,7 @@ the full five-point results are the committed `paper/entropy_rep_{A,B,C}.csv`.
 | Meeting-height calibration grid | `attacks/round10_meeting_bound.py`, `attacks/analyze_round10.py` | `attacks/round10_out.txt` | per-$k$ grid of $\Pr[z\ge V]$, expected distinct count, tail supremum |
 | Design-space exhaustion at $k=20$ | `attacks/round1_k20_full.py` | stdout | exhaustive enumeration over the design space |
 | `thm:cyclekill` (step-count collapse) | `attacks/round1_h5_cyclekill.py`, `attacks/round12_bitlen_cyclekill.py` | `attacks/round12_out.txt` | no admissible $(s,t)$ survives the bit-length guard |
+| Figures (five, 300 dpi) | `paper/figures/make_figures_en.py` | `paper/figures/fig*.png` | regenerates all five in about 5 s; no input files, fixed seeds |
 | Theorem 1 margin check | `attacks/verify_n6_margin.py` | `attacks/verify_n6_margin_out.txt` | the stated margin holds at the tested sizes |
 | Audits of three published schemes | `attacks/round11_audit_{owf,pow,prng}.py` | stdout | each scheme broken as described in Appendix B |
 | Distribution of $m=\lvert a-b\rvert$ | `paper/check_m_distribution.py` | `paper/m_distribution_check.csv`, `paper/m_range_check.csv` | KS comparison and quantised TV; extreme-interval probabilities for (C4) |
