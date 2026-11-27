@@ -4,7 +4,7 @@ Reproducibility package for the manuscript *"Conditional Exclusion of Trajectory
 
 本仓库与论文附录 A 的清单一一对应：**38 个实验与分析脚本、4 张图及其生成脚本、实验输出数据**。脚本与论文小节/附录的对应关系、预期输出与运行时间，见论文附录 A 的逐项列表。全部文件的原始 MD5 校验和见 `md5sums.txt`；复跑对照用的数值校验和见 `md5sums_numeric.txt`（见下节）。
 
-> **Tag note.** The manuscript cites tag `v1.0`. Later tags (`v1.0.0`, `v1.0.1`) reorganize the directory layout; if `lean/core/` is missing in the tag you opened, use `v1.0`.
+> **Tag note.** The manuscript cites tag `v1.1` (five-point sampling protocol). `v1.0` and earlier tags predate that protocol and some reorganize the directory layout; if `lean/core/` is missing in the tag you opened, use `v1.0` or later.
 
 ## 目录结构
 
