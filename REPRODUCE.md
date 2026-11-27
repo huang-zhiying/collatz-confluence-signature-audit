@@ -29,7 +29,7 @@ the full five-point results are the committed `paper/entropy_rep_{A,B,C}.csv`.
 
 | Paper | Script | Output | What to read |
 |---|---|---|---|
-| 80 instances, at most 27 trials | `attacks/round5_full_scheme.py` | stdout | per-instance result lines; the summary counts returned instances and trials used |
+| 100 instances (five $k$), median 1 draw, 90th pct 12, max 89 | `attacks/round12_bitlen_cyclekill.py` | `attacks/round12_out.txt` | per-$k$ lines plus the summary line; seeds are `20261004+k`, 20 instances per $k$ |
 | End-to-end forgery cost, $L=4/16/64/256$ | `attacks/round9_lamport_scaling.py` | `attacks/round9_out.txt` | 2,543 / 6,994 / 118,077 / 189,758 trajectory computations; $L=256$ in 28.2 s |
 | Repetition statistics for the same runs | `attacks/round9b_repeat_stats.py`, `attacks/round9c_repeat_stats.py` | `attacks/round9b_out.txt`, `attacks/round9c_out.txt` | per-instance means and maxima |
 | Table 1: entropy and $\hat U_k$ at five $k$ | `paper/entropy_replication.py` | `paper/entropy_rep_{A,B,C}.csv` | columns `k,rep,N,U,Hinf,H2,H1`; $k=64,128,256$ in A, 512 in B, 1024 in C; 20 repeats each; the paper quotes the means |

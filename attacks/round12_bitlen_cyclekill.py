@@ -59,9 +59,11 @@ def P(*args):
 
 t_start = time.time()
 P("round12_bitlen_cyclekill: k 位版本循环回绕（P0 位长约束下）")
-for k in (64, 128, 256, 1024):
+ALL_TRIES = []
+for k in (64, 128, 256, 512, 1024):
     random.seed(20261004 + k)
     ok = 0
+    all_tries_here = []
     first_try = 0
     samples_total = 0
     max_tries = 0
@@ -91,6 +93,8 @@ for k in (64, 128, 256, 1024):
             assert rem >= 0 and rem % 3 == 0
             if Tj(ap, sp) == z and Tj(bp, tp) == z and sp + tp == n and abs(ap - bp) == m:
                 found = True
+                all_tries_here.append(att)
+                ALL_TRIES.append(att)
                 samples_total += att
                 if att == 1:
                     first_try += 1
@@ -100,6 +104,14 @@ for k in (64, 128, 256, 1024):
             ok += 1
     P("k=%4d: 攻破 %2d/20 | 首样本命中 %2d/20 | 平均采样 %.1f 次 | 最大采样 %d 次"
       % (k, ok, first_try, samples_total / 20.0, max_tries))
+def _pct(vals, q):
+    v = sorted(vals)
+    import math
+    idx = max(0, min(len(v) - 1, int(math.ceil(q * len(v))) - 1))
+    return v[idx]
+
+P("汇总（%d 个实例，seed 20261004+k，20 每档）: 中位 %d | 90 分位 %d | 最大 %d"
+  % (len(ALL_TRIES), _pct(ALL_TRIES, 0.5), _pct(ALL_TRIES, 0.9), max(ALL_TRIES)))
 P("总耗时 %.1f s（确定性种子；每次采样 = 两个 k 位轨线模拟）" % (time.time() - t_start))
 _out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "round12_out.txt")
 io.open(_out, "w", encoding="utf-8", newline="\n").write("\n".join(buf) + "\n")
