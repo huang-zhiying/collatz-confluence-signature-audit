@@ -1,10 +1,10 @@
 # Collatz 轨线汇合型签名的条件性排除 · 复现材料
 
-Reproducibility package for the manuscript *"Conditional Exclusion of Trajectory-Confluence Collatz Signatures: Structural Obstacles within Design Space S"*（《Collatz 轨线汇合型签名的条件性排除：设计空间 S 内的结构障碍》，投稿中）。
+Reproducibility package for the manuscript *"Structural Obstacles in Trajectory-Confluence Collatz Signatures: Step-Count Collapse, Entropy Compression, and an Explicit Forgery"*（《Collatz 轨线汇合型签名中的结构障碍：步数塌缩、熵压缩与一个显式伪造》，投稿中）。
 
-本仓库与论文附录 A 的清单一一对应：**38 个实验与分析脚本、4 张图及其生成脚本、实验输出数据**。脚本与论文小节/附录的对应关系、预期输出与运行时间，见论文附录 A 的逐项列表。全部文件的原始 MD5 校验和见 `md5sums.txt`；复跑对照用的数值校验和见 `md5sums_numeric.txt`（见下节）。
+本仓库与论文附录 A 的清单一一对应：**`attacks/` 与 `paper/` 下的实验与分析脚本、5 张图（`fig0`–`fig4`）及其生成脚本、实验输出数据**。脚本与论文小节/附录的对应关系、预期输出与运行时间，见论文附录 A 的逐项列表。全部文件的原始 MD5 校验和见 `md5sums.txt`；复跑对照用的数值校验和见 `md5sums_numeric.txt`（见下节）。
 
-> **Tag note.** The manuscript cites tag `v1.2`: it carries the five-point sampling protocol, the figure-generation scripts (`paper/figures/make_figures_en.py`) and the full script inventory the appendix refers to. Earlier tags predate one or more of these; if `lean/core/` is missing in the tag you opened, use `v1.0` or later.
+> **Tag note.** The manuscript cites a release tag of this repository; the tag you have checked out is the snapshot the paper names (`git describe --tags`). Every release tag from `v1.3` on is self-contained: the five figure files with their generators, the full script inventory the appendix lists, the archived outputs, and `lean/core` + `lean/guess`.
 
 ## 目录结构
 
