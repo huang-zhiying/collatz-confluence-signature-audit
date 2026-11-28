@@ -1,0 +1,52 @@
+support_saturation.py — support-count accumulation and Chao1 bound
+command:  python paper/support_saturation.py
+seed:     20261128 (fixed in the script)
+runtime:  580 s on the test bed (Windows 10, CPython 3.13)
+k:        64, 256, 512, 1024 — one honest m per k, N grown as below
+
+Each line: N samples, observed = number of distinct shortest-meeting distances.
+The final line per k adds the singletons f1, the doubletons f2, the Chao1 bound
+S_obs + f1^2/(2 f2) and the unseen fraction relative to S_obs.
+
+== k=64 (N up to 400000) ==
+  k=  64 N=   1000  observed=  565
+  k=  64 N=   3000  observed=  732
+  k=  64 N=  10000  observed=  879
+  k=  64 N=  30000  observed=  984
+  k=  64 N= 100000  observed= 1101
+  k=  64 N= 200000  observed= 1159
+  k=  64 N= 400000  observed= 1216
+  k=64: S_obs=1216  f1=96  f2=41  Chao1=1328  unseen=9.2%  (173s elapsed)
+== k=256 (N up to 150000) ==
+  k= 256 N=   1000  observed=  903
+  k= 256 N=   3000  observed= 1323
+  k= 256 N=  10000  observed= 1654
+  k= 256 N=  30000  observed= 1902
+  k= 256 N= 100000  observed= 2102
+  k= 256 N= 150000  observed= 2176
+  k=256: S_obs=2176  f1=163  f2=90  Chao1=2324  unseen=6.8%  (367s elapsed)
+== k=512 (N up to 40000) ==
+  k= 512 N=   1000  observed=  773
+  k= 512 N=   3000  observed= 1373
+  k= 512 N=  10000  observed= 1979
+  k= 512 N=  30000  observed= 2390
+  k= 512 N=  40000  observed= 2492
+  k=512: S_obs=2492  f1=335  f2=187  Chao1=2792  unseen=12.0%  (440s elapsed)
+== k=1024 (N up to 12000) ==
+  k=1024 N=   1000  observed= 1046
+  k=1024 N=   3000  observed= 1976
+  k=1024 N=  10000  observed= 2801
+  k=1024 N=  12000  observed= 2901
+  k=1024: S_obs=2901  f1=558  f2=303  Chao1=3415  unseen=17.7%  (580s elapsed)
+total runtime 580s
+
+Reading. The support is still growing at every k: N doubles add fewer new values
+but never zero. The unseen fraction is 9.2% at k=64 (N=4e5) and 6.8% at k=256
+(N=1.5e5); the larger values at k=512/1024 (12%, 18%) track the smaller sample
+caps used there, not a larger support. At the common N=1e4 the counts are
+879/1654/1979/2801 for k=64/256/512/1024, a factor 3.19 over a sixteenfold
+increase in k (exponent 0.42, the slope quoted in the main text) — a fit to
+unsaturated lower-bound readings, not an estimate of the true growth exponent.
+These are single-m counts; Table S5 averages twenty repetitions with independent
+m and a different seed scheme, so the two are not directly comparable
+(879 vs 786 at k=64, 1654 vs 1452 at k=256).

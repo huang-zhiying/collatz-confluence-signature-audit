@@ -32,6 +32,7 @@ the full five-point results are the committed `paper/entropy_rep_{A,B,C}.csv`.
 | 100 instances (five $k$), median 1 draw, 90th pct 12, max 89 | `attacks/round12_bitlen_cyclekill.py` | `attacks/round12_out.txt` | per-$k$ lines plus the summary line; seeds are `20261004+k`, 20 instances per $k$ |
 | End-to-end forgery cost, $L=4/16/64/256$ | `attacks/round9_lamport_scaling.py` | `attacks/round9_out.txt` | 2,543 / 6,994 / 118,077 / 189,758 trajectory computations; $L=256$ in 28.2 s |
 | Repetition statistics for the same runs | `attacks/round9b_repeat_stats.py`, `attacks/round9c_repeat_stats.py` | `attacks/round9b_out.txt`, `attacks/round9c_out.txt` | per-instance means and maxima |
+| Support-count saturation (accumulation + Chao1) | `paper/support_saturation.py` | `paper/support_saturation_out.txt` | k=64: 565→1216 over N=1e3…4e5, Chao1 1328 (f1=96, f2=41); 2176/2324 at k=256; 2492/2792 at k=512; 2901/3415 at k=1024; single-m counts, not comparable with Table S5 |
 | Table 1: entropy and $\hat U_k$ at five $k$ | `paper/entropy_replication.py` | `paper/entropy_rep_{A,B,C}.csv` | columns `k,rep,N,U,Hinf,H2,H1`; $k=64,128,256$ in A, 512 in B, 1024 in C; 20 repeats each; the paper quotes the means |
 | Fig. 4 (entropy vs $k$) | `paper/figures/make_figures.py` | `paper/figures/fig4_entropy_vs_k.png` | regenerated from the CSVs above |
 | Fig. 3 (distance entropy) | `paper/estimate_min_entropy.py`, `paper/estimate_min_entropy_large.py` | stdout, then `paper/figures/make_figures.py` | sample count, distinct distances, entropy estimate |
